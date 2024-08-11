@@ -103,5 +103,3 @@ function playGame (numInput) {
     }
 
 }
-
-playGame(5)
