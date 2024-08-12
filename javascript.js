@@ -1,6 +1,6 @@
 // console.log("Hello World");
 
-choiceArr = ["rock", "paper", "scissors"];
+const choiceArr = ["rock", "paper", "scissors"];
 
 function getComputerChoice() {
     compNum = Math.floor(Math.random() * choiceArr.length);
