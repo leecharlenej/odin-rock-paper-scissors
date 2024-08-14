@@ -98,13 +98,13 @@ let finalResult = document.querySelector("div.results")
 let gameCounter = 0;
 let gameCounterDisplay = document.querySelector("#gameCounter")
 
+
+// -------------------------------------------------------
+// 1. Store Event Handler in a function.
+// 2. Attach and remove event listener on Parent element.
+// -------------------------------------------------------
+
 const handleUserChoice = (event) => {
-
-}
-
-
-userChoice.addEventListener("click", (event) => {
-
     gameCounter++;
     gameCounterDisplay.textContent = gameCounter;
 
@@ -133,9 +133,12 @@ userChoice.addEventListener("click", (event) => {
     computerScoreDisplay.textContent = computerScore;
 
     if (humanScore === 5 || computerScore === 5) {
-        finalResult.textContent = 'The game ends!'
+        finalResult.innerHTML = '<span id="ends">The game ends!</span>';
+        userChoice.removeEventListener("click", handleUserChoice);
 
         // console.log("The game ends!")
     };
 
-});
+};
+
+userChoice.addEventListener("click", handleUserChoice);
