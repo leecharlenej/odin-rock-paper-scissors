@@ -26,22 +26,28 @@ function capitalizeFirstLetter (stringInput) {
 }
 
 function playRound(humanScore, computerScore, humanChoice, computerChoice) {
+    let choices = document.querySelector("div.choices");
+    let results = document.querySelector("div.results");
 
-    console.log(`You choice: ${capitalizeFirstLetter(humanChoice)} vs. Computer's choice: ${capitalizeFirstLetter(computerChoice)}`);
+    choices.textContent = `You choice: ${capitalizeFirstLetter(humanChoice)} vs. Computer's choice: ${capitalizeFirstLetter(computerChoice)}`;
+    // console.log(`You choice: ${capitalizeFirstLetter(humanChoice)} vs. Computer's choice: ${capitalizeFirstLetter(computerChoice)}`);
 
     if (computerChoice === humanChoice) {
-        console.log("It's a draw!");
+        results.textContent = "It's a draw!";
+        // console.log("It's a draw!");
 
     } else if (computerChoice === "rock") {
 
         switch (humanChoice) {
             case "paper":
                 humanScore++;
-                console.log(`You win! ${capitalizeFirstLetter(humanChoice)} beats ${computerChoice}.`);
+                results.textContent = `You win! ${capitalizeFirstLetter(humanChoice)} beats ${computerChoice}.`;
+                //console.log(`You win! ${capitalizeFirstLetter(humanChoice)} beats ${computerChoice}.`);
                 break;
             case "scissors":
                 computerScore++;
-                console.log(`You lose! ${capitalizeFirstLetter(humanChoice)}  loses to ${computerChoice}.`);
+                results.textContent = `You lose! ${capitalizeFirstLetter(humanChoice)}  loses to ${computerChoice}.`;
+                //console.log(`You lose! ${capitalizeFirstLetter(humanChoice)}  loses to ${computerChoice}.`);
                 break;
         }   
     } else if (computerChoice === "paper") {
@@ -49,11 +55,13 @@ function playRound(humanScore, computerScore, humanChoice, computerChoice) {
         switch (humanChoice) {
             case "scissors":
                 humanScore++;
-                console.log(`You win! ${capitalizeFirstLetter(humanChoice)} beats ${computerChoice}.`);
+                results.textContent = `You win! ${capitalizeFirstLetter(humanChoice)} beats ${computerChoice}.`;
+                // console.log(`You win! ${capitalizeFirstLetter(humanChoice)} beats ${computerChoice}.`);
                 break;
             case "rock":
                 computerScore++;
-                console.log(`You lose! ${capitalizeFirstLetter(humanChoice)} loses to ${computerChoice}.`);
+                results.textContent = `You lose! ${capitalizeFirstLetter(humanChoice)} loses to ${computerChoice}.`;
+                // console.log(`You lose! ${capitalizeFirstLetter(humanChoice)} loses to ${computerChoice}.`);
                 break;
         }
     } else if (computerChoice === "scissors") {
@@ -61,45 +69,73 @@ function playRound(humanScore, computerScore, humanChoice, computerChoice) {
         switch (humanChoice) {
             case "rock":
                 humanScore++;
-                console.log(`You win! ${capitalizeFirstLetter(humanChoice)} beats ${computerChoice}.`);
+                results.textContent = `You win! ${capitalizeFirstLetter(humanChoice)} beats ${computerChoice}.`;
+                // console.log(`You win! ${capitalizeFirstLetter(humanChoice)} beats ${computerChoice}.`);
                 break;
             case "paper":
                 computerScore++;
-                console.log(`You lose! ${capitalizeFirstLetter(humanChoice)} loses to ${computerChoice}.`);
+                results.textContent = `You lose! ${capitalizeFirstLetter(humanChoice)} loses to ${computerChoice}.`;
+                // console.log(`You lose! ${capitalizeFirstLetter(humanChoice)} loses to ${computerChoice}.`);
                 break;
         } 
     }
     
-    console.log(`Score board: You - ${humanScore} Computer - ${computerScore}`);
+    // console.log(`Score board: You - ${humanScore} Computer - ${computerScore}`);
     return [humanScore, computerScore];
 
 }
 
-// playRound(humanSelection, computerSelection);
+// // playRound(humanSelection, computerSelection);
 
-function playGame (numInput) {
-    
-    num = parseInt(numInput);
-    let humanScore = 0;
-    let computerScore = 0;
 
-    for (let i=0; i< num; i++) {
-        console.log(`---------- Round ${i+1} begins! ----------`)
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        roundScore = playRound(humanScore, computerScore, humanSelection, computerSelection);
-        humanScore = roundScore[0];
-        computerScore = roundScore[1];
-    }
+let userChoice = document.querySelector(".userChoice");
+let humanScore = 0;
+let computerScore = 0;
+let humanScoreDisplay = document.querySelector("#humanScore");
+let computerScoreDisplay = document.querySelector("#computerScore");
+let finalResult = document.querySelector("div.results")
 
-    console.log(`The final score is: You - ${humanScore} Computer - ${computerScore}`)
+let gameCounter = 0;
+let gameCounterDisplay = document.querySelector("#gameCounter")
 
-    if (humanScore > computerScore) {
-        console.log("You win!");
-    } else if (humanScore < computerScore) {
-        console.log("You lose!");
-    } else {
-        console.log("No one wins!");
-    }
+const handleUserChoice = (event) => {
 
 }
+
+
+userChoice.addEventListener("click", (event) => {
+
+    gameCounter++;
+    gameCounterDisplay.textContent = gameCounter;
+
+    let target = event.target;
+    let computerChoice = getComputerChoice();
+
+    switch(target.id) {
+        case 'rock':
+            roundScore = playRound(humanScore, computerScore, "rock", computerChoice);
+            humanScore = roundScore[0];
+            computerScore = roundScore[1];
+            break;
+        case 'paper':
+            roundScore = playRound(humanScore, computerScore, "paper", computerChoice);
+            humanScore = roundScore[0];
+            computerScore = roundScore[1];
+            break;
+        case 'scissors':
+            roundScore = playRound(humanScore, computerScore, "scissors", computerChoice);
+            humanScore = roundScore[0];
+            computerScore = roundScore[1];
+            break;
+    }
+
+    humanScoreDisplay.textContent = humanScore;
+    computerScoreDisplay.textContent = computerScore;
+
+    if (humanScore === 5 || computerScore === 5) {
+        finalResult.textContent = 'The game ends!'
+
+        // console.log("The game ends!")
+    };
+
+});

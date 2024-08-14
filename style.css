@@ -1,4 +1,13 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container {
+    text-align: center;
+}
+
 button {
+    font-family: inherit;
     border: 1px solid black;
     border-radius: 8px;
     background-color: rgb(148, 173, 240);
@@ -8,4 +17,16 @@ button {
 .body-main {
     display: flex;
     justify-content: center;
+}
+
+.scoreboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score {
+    border: 1px solid black;
+    width: 300px;
+    padding: 10px;
 }

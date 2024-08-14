@@ -8,18 +8,45 @@
 </head>
 <body>
 
-    <script src="javascript.js"></script>
+    <div class="container">
+        <div>
+            <h2>Welcome to Char's version of
+            <br>Rock, Paper, Scissors!</dh2>
+        </div>
 
-    <div class="body-main">
-        <button onClick="playGame(5)">Click me to play!</button>
+        <p></p>
 
-        <!-- <div>
-            To view game, right-click > Inspect > Console!
-        </div> -->
+        <div class="userChoice">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+    
+        <p></p>
+
+        <div class="scoreboard-container">
+                <div class="choices"></div>
+
+                <p></p>
+                <div class="results">Click the above to play!</div>
+
+                <p></p>
+
+                <div class="score">
+                    Game count: <span id="gameCounter">0</span>
+                    <p></p>
+                    Your score: <span id="humanScore">0</span> vs. 
+                    Computer score: <span id="computerScore">0</span>
+                </div>
+
+        </div>
+    
     </div>
+
 
     
 
+<script src="javascript.js"></script>
     
 </body>
 </html>
